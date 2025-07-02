@@ -1,0 +1,37 @@
+mutli-env/
+├── environments/
+│   ├── dev/
+│   │   ├── main.tf               # Calls all modules (network, security, eks, alb, etc.)
+│   │   ├── variables.tf
+│   │   ├── backend.tf
+│   │   └── outputs.tf
+│   └── prod/
+│       ├── main.tf
+│       ├── variables.tf
+│       ├── backend.tf
+│       └── outputs.tf
+├── modules/
+│   ├── network/                  # VPC, public/private subnets, IGW, NAT
+│   │   ├── main.tf
+│   │   └── outputs.tf
+│   ├── security/                # IAM roles, policies, security groups
+│   │   ├── iam.tf
+│   │   ├── sg.tf
+│   │   └── outputs.tf
+│   ├── alb/                     # ALB + Listener + Target Group
+│   │   ├── alb.tf
+│   │   └── outputs.tf
+│   ├── ec2/                     # Optional — launch template
+│   ├── autoscaling/             # Optional — EC2 ASG
+│   ├── eks/                     # EKS cluster, node groups, IRSA
+│   │   ├── cluster.tf
+│   │   ├── node_group.tf
+│   │   ├── cluster_autoscaler.tf     # Helm release for Cluster Autoscaler
+│   │   ├── iam.tf
+│   │   ├── outputs.tf
+│   │   └── variables.tf
+│   └── ecr/                     # ECR repo for app image
+│       ├── main.tf
+│       └── outputs.tf
+
+
